@@ -179,7 +179,7 @@ function validationForm(){
         lastNameErrorMsg.innerText = '';
     }
     //validation address
-    let addressValidator = new RegExp("[a-([0-9]*) ?([a-zA-Z,\. ]*) ?([0-9]{5}) ?([a-zA-Z]*)-Z]");
+    let addressValidator = new RegExp(/^[0-9A-z\- ]+$/);
     let address = document.getElementById('address');
     let addressErrorMsg = document.getElementById('addressErrorMsg');
     if (!addressValidator.test(address)){
@@ -268,7 +268,7 @@ orderButton.addEventListener('click', function() {
 
     console.log(orderObject)
 
-    fetch ('http://localhost:3000/api/order/',{
+    fetch ('http://localhost:3000/api/products/order/',{
         method: 'POST',
         headers: {
             'Accept':'application/json',
@@ -279,7 +279,7 @@ orderButton.addEventListener('click', function() {
     .then (res =>res.json())
     .then(function(data){
         localStorage.clear();
-        document.location.href = 'http:127.0.0.1:5500/front/html/confirmation.html?orderId=' + data.orderId
+        document.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html?orderId=' + data.orderId
     })
 })
 
