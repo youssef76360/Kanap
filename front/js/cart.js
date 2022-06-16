@@ -146,40 +146,40 @@ function updateQuantityAndPrice(e){
 
 ////////REGEX//////////
 
-let firstNameValidator= new RegExp
+let firstNameValidator= RegExp
 (pattern="/(^[a-zA-Z][a-zA-Z\s]{0,20}[a-zA-Z]$)/")
 
 
 function validationForm(){
     let valid = true;
     //validation firstname
-    let firstNameValidator = new RegExp("[a-zA-Z]");
-    let firstName = document.getElementById('firstname');
+    let firstNameValidator = RegExp(/^[a-zA-Z]+$/);
+    let firstName = document.getElementById('firstName');
     let firstNameErrorMsg = document.getElementById('firstNameErrorMsg');
     if (!firstNameValidator.test(firstName)){
         valid = false;
 
-        firstNameErrorMsg.innerText = "le nom n'est pas au bon format";
+        firstNameErrorMsg.innerText = "le prénom n'est pas au bon format";
 
     }
     else{
         firstNameErrorMsg.innerText = '';
     }
     //validation lastname
-    let lastNameValidator = new RegExp("[a-zA-Z]");
+    let lastNameValidator = RegExp("[a-zA-Z]");
     let lastName = document.getElementById('lastName');
     let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
     if (!lastNameValidator.test(lastName)){
         valid = false;
 
-        lastNameErrorMsg.innerText = "le prénom n'est pas au bon format";
+        lastNameErrorMsg.innerText = "le nom n'est pas au bon format";
 
     }
     else{
         lastNameErrorMsg.innerText = '';
     }
     //validation address
-    let addressValidator = new RegExp(/^[0-9A-z\- ]+$/);
+    let addressValidator = RegExp(/^[0-9A-z\- ]+$/);
     let address = document.getElementById('address');
     let addressErrorMsg = document.getElementById('addressErrorMsg');
     if (!addressValidator.test(address)){
@@ -192,7 +192,7 @@ function validationForm(){
         addressErrorMsg.innerText = '';
     }
     //validation city
-    let cityValidator = new RegExp("[a-zA-Z]");
+    let cityValidator = RegExp("[a-zA-Z]");
     let city = document.getElementById('city');
     let cityErrorMsg = document.getElementById('cityErrorMsg');
     if (!cityValidator.test(city)){
@@ -225,6 +225,7 @@ orderButton.addEventListener('click', function() {
 
     //récupérer validationForm
     let formIsValid = validationForm()
+    console.log(formIsValid);
     if (!formIsValid) {
         alert('le formulaire est incorrect');
         return false;
@@ -268,7 +269,7 @@ orderButton.addEventListener('click', function() {
 
     console.log(orderObject)
 
-    fetch ('http://localhost:3000/api/products/order/',{
+    /*fetch ('http://localhost:3000/api/products/order/',{
         method: 'POST',
         headers: {
             'Accept':'application/json',
@@ -280,7 +281,7 @@ orderButton.addEventListener('click', function() {
     .then(function(data){
         localStorage.clear();
         document.location.href = 'http://127.0.0.1:5500/front/html/confirmation.html?orderId=' + data.orderId
-    })
+    })*/
 })
 
 
